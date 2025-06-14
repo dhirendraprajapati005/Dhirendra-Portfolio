@@ -2,14 +2,15 @@ import React from 'react';
 import Navbar from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import AboutSection from '../components/AboutSection.jsx';
-
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate(); // ✅ Corrected
+
   return (
     <div className="relative min-h-screen flex flex-col overflow-hidden bg-gray-900 text-white">
-     
+      {/* Background Layer */}
       <div className="absolute inset-0 -z-10">
-    
         {/* Optional Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-60"></div>
       </div>
@@ -27,12 +28,12 @@ const Home = () => {
           We don’t just build websites — we build lasting connections.
         </p>
 
-        <a 
-          href="/project"
-          className="mt-8 inline-block px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full shadow-lg hover:bg-cyan-400 transition-all duration-300 animate-fadeIn delay-500"
+        <button
+          onClick={() => navigate('/project')}
+          className="mt-8 inline-block px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full shadow-lg hover:bg-cyan-400 transition-all duration-300 animate-fadeIn delay-500 cursor-pointer"
         >
           Explore My Work
-        </a>
+        </button>
       </main>
 
       {/* About Section */}
