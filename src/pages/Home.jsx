@@ -28,7 +28,7 @@ const Home = () => {
         </p>
 
         <a 
-          href="#projects"
+          href="/project"
           className="mt-8 inline-block px-6 py-3 bg-cyan-500 text-black font-semibold rounded-full shadow-lg hover:bg-cyan-400 transition-all duration-300 animate-fadeIn delay-500"
         >
           Explore My Work
