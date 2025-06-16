@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar.jsx';
-import Footer from '../components/Footer.jsx';
+
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -35,12 +34,12 @@ const Contact = () => {
 
   return (
     <>
-      <Navbar />
+      
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ duration: 1 }}
-        className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white flex items-center justify-center py-12 px-4"
+        className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex items-center justify-center py-12 px-4"
       >
         <motion.form 
           onSubmit={handleSubmit} 
@@ -103,7 +102,7 @@ const Contact = () => {
           {status && <p className="text-center text-sm text-gray-300 mt-4">{status}</p>}
         </motion.form>
       </motion.div>
-      <Footer />
+     
     </>
   );
 };

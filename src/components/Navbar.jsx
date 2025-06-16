@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -11,17 +10,18 @@ const Navbar = () => {
   const handleClick = () => setClick(!click);
 
   const handleScroll = () => {
-    if (window.scrollY >= 100) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
+    setScrolled(window.scrollY >= 100);
   };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavigate = (path) => {
+    setClick(false);
+    navigate(path);
+  };
 
   return (
     <div
@@ -30,15 +30,24 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center text-white">
-        <button onClick={() => navigate("/")}> 
+        <button onClick={() => navigate("/")}>
           <h1 className="text-2xl font-bold tracking-wide">Portfolio</h1>
         </button>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-8 font-medium">
-          <li><button onClick={() => navigate("/")} className="hover:text-cyan-400 transition">Home</button></li>
-          <li><button onClick={() => navigate("/project")} className="hover:text-cyan-400 transition">Projects</button></li>
-          <li><button onClick={() => navigate("/contact")} className="hover:text-cyan-400 transition">Contact</button></li>
+          <li>
+            <button onClick={() => navigate("/")} className="hover:text-cyan-400 transition">Home</button>
+          </li>
+          <li>
+            <button onClick={() => navigate("/about")} className="hover:text-cyan-400 transition">About</button>
+          </li>
+          <li>
+            <button onClick={() => navigate("/project")} className="hover:text-cyan-400 transition">Projects</button>
+          </li>
+          <li>
+            <button onClick={() => navigate("/contact")} className="hover:text-cyan-400 transition">Contact</button>
+          </li>
         </ul>
 
         {/* Mobile Menu Icon */}
@@ -56,9 +65,10 @@ const Navbar = () => {
             click ? "block" : "hidden"
           }`}
         >
-          <li onClick={() => { setClick(false); navigate("/"); }}>Home</li>
-          <li onClick={() => { setClick(false); navigate("/project"); }}>Projects</li>
-          <li onClick={() => { setClick(false); navigate("/contact"); }}>Contact</li>
+          <li onClick={() => handleNavigate("/")}>Home</li>
+          <li onClick={() => handleNavigate("/about")}>About</li>
+          <li onClick={() => handleNavigate("/project")}>Projects</li>
+          <li onClick={() => handleNavigate("/contact")}>Contact</li>
         </ul>
       </div>
     </div>
