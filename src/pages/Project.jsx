@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -44,7 +45,15 @@ const Projects = () => {
   );
 
   return (
-    <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-16 px-4 min-h-screen">
+    <section className="bg-gray-950 text-white py-16 px-4 min-h-screen">
+      <Helmet>
+        <title>Projects | Dhirendra Portfolio</title>
+        <meta
+          name="description"
+          content="Explore Dhirendra's MERN projects including authentication systems, AI tools, and file upload apps."
+        />
+      </Helmet>
+
       <div className="max-w-7xl mx-auto">
         {/* Title */}
         <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12" data-aos="fade-down">
@@ -57,7 +66,7 @@ const Projects = () => {
             type="text"
             placeholder="Search by title, description or tech..."
             aria-label="Search Projects"
-            className="w-full max-w-md px-4 py-2 bg-gray-700 placeholder-gray-400 text-white rounded-md focus:ring-2 focus:ring-cyan-500 outline-none transition"
+            className="w-full max-w-md px-4 py-2 bg-gray-800 placeholder-gray-400 text-white rounded-md focus:ring-2 focus:ring-cyan-500 outline-none transition"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value.toLowerCase())}
           />
@@ -69,7 +78,7 @@ const Projects = () => {
             filteredProjects.map((project, index) => (
               <div
                 key={index}
-                className="bg-gray-800 rounded-xl p-5 shadow-lg hover:shadow-cyan-500/30 transition duration-300 flex flex-col"
+                className="bg-gray-900 rounded-xl p-5 shadow-lg hover:shadow-cyan-500/30 transition duration-300 flex flex-col"
                 data-aos="fade-up"
                 data-aos-delay={index * 150}
               >

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -16,14 +17,18 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-      {/* Background Layer */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-black bg-opacity-60" />
-      </div>
+    <div className="relative min-h-screen flex flex-col overflow-hidden text-white bg-gray-900">
+      {/* SEO Meta Tags */}
+      <Helmet>
+        <title>Dhirendra Portfolio | Web Developer</title>
+        <meta
+          name="description"
+          content="Welcome to Dhirendra's portfolio. Explore projects, skills, and design work that showcase beautiful and functional web experiences."
+        />
+      </Helmet>
 
       {/* Hero Section */}
-      <main className="flex-grow flex flex-col justify-center items-center px-4 py-40 text-center">
+      <main className="flex-grow flex flex-col justify-center items-center px-4 py-32 text-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <h1
           className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-cyan-300 drop-shadow-[0_0_15px_#00ffff]"
           data-aos="fade-up"
@@ -51,8 +56,10 @@ const Home = () => {
       </main>
 
       {/* About Section */}
-      <section data-aos="fade-up" className="px-4 py-12">
-        <About />
+      <section data-aos="fade-up" className="px-4 py-16 bg-gray-950">
+        <div className="max-w-6xl mx-auto">
+          <About />
+        </div>
       </section>
     </div>
   );

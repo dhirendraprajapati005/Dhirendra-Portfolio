@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -34,22 +34,29 @@ const Contact = () => {
 
   return (
     <>
-      
+      <Helmet>
+        <title>Contact | Dhirendra Portfolio</title>
+        <meta
+          name="description"
+          content="Get in touch with Dhirendra via the contact form for collaborations or queries."
+        />
+      </Helmet>
+
       <motion.div 
         initial={{ opacity: 0 }} 
         animate={{ opacity: 1 }} 
         transition={{ duration: 1 }}
-        className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex items-center justify-center py-12 px-4"
+        className="min-h-screen bg-gray-950 text-white flex items-center justify-center py-12 px-4"
       >
         <motion.form 
           onSubmit={handleSubmit} 
           initial={{ scale: 0.8, opacity: 0 }} 
           animate={{ scale: 1, opacity: 1 }} 
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="w-full max-w-xl bg-gray-800 p-8 rounded-xl shadow-lg space-y-6"
+          className="w-full max-w-xl bg-gray-900 p-8 rounded-xl shadow-lg space-y-6"
         >
           <motion.h2 
-            className="text-3xl font-bold text-center" 
+            className="text-3xl font-bold text-center text-cyan-400" 
             initial={{ y: -20, opacity: 0 }} 
             animate={{ y: 0, opacity: 1 }} 
             transition={{ delay: 0.4 }}
@@ -65,7 +72,7 @@ const Contact = () => {
             onChange={handleChange}
             required
             whileFocus={{ scale: 1.02 }}
-            className="w-full p-3 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none"
+            className="w-full p-3 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none"
           />
 
           <motion.input
@@ -76,7 +83,7 @@ const Contact = () => {
             onChange={handleChange}
             required
             whileFocus={{ scale: 1.02 }}
-            className="w-full p-3 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none"
+            className="w-full p-3 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none"
           />
 
           <motion.textarea
@@ -87,7 +94,7 @@ const Contact = () => {
             onChange={handleChange}
             required
             whileFocus={{ scale: 1.02 }}
-            className="w-full p-3 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none"
+            className="w-full p-3 rounded bg-gray-800 text-white border border-gray-600 focus:outline-none"
           ></motion.textarea>
 
           <motion.button
@@ -102,7 +109,6 @@ const Contact = () => {
           {status && <p className="text-center text-sm text-gray-300 mt-4">{status}</p>}
         </motion.form>
       </motion.div>
-     
     </>
   );
 };
