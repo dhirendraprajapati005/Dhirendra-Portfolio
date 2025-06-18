@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 
 import Home from './pages/Home.jsx';
 import About from './pages/About.jsx';
@@ -12,6 +13,7 @@ import CookieConsent from './components/CookieConsent.jsx'; // ✅ CookieConsent
 const App = () => {
   return (
     <>
+    
       <Routes>
         {/* Home Page */}
         <Route path='/' element={<Home />} />
@@ -31,6 +33,7 @@ const App = () => {
 
       {/* Cookie Consent Banner — always visible at bottom */}
       <CookieConsent />
+      <Analytics />
     </>
   );
 };
