@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-import myproject1 from '../assets/myproject1.png';
-import myproject2 from '../assets/myproject2.png';
-import myproject3 from '../assets/myproject3.png';
+import myproject1 from '../assets/myproject1.webp';
+import myproject2 from '../assets/myproject2.webp';
+import myproject3 from '../assets/myproject3.webp';
 
 const Projects = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -90,6 +90,7 @@ const Projects = () => {
                 data-aos-delay={index * 150}
               >
                 <img
+                  loading='lazy'
                   src={project.img}
                   alt={`Screenshot of ${project.title}`}
                   className="rounded-md mb-4 w-full object-cover h-48"

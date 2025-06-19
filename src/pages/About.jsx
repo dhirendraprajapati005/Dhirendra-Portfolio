@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import profileImg from '../assets/profile.png';
+import profileImg from '../assets/profile.webp';
 import Skills from '../components/Skills.jsx';
 import Projects from './Project.jsx';
 
@@ -30,6 +30,7 @@ const About = () => {
           className="w-full flex flex-col items-center text-center"
         >
           <img
+            loading='lazy'
             src={profileImg}
             alt="Dhirendra"
             className="rounded-2xl w-full max-w-xs aspect-square object-cover object-top shadow-lg hover:scale-105 transition duration-500 mb-4"
