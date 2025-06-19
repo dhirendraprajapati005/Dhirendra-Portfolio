@@ -1,4 +1,3 @@
-// src/pages/PrivacyPolicy.jsx
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
@@ -14,14 +13,21 @@ const PrivacyPolicy = () => {
         />
       </Helmet>
 
-      <motion.div
+      <motion.main
+        id="privacy-main"
+        aria-labelledby="privacy-heading"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         className="min-h-screen bg-gray-950 text-white px-6 py-12 flex items-center justify-center"
       >
         <div className="max-w-4xl w-full bg-gray-900 p-8 rounded-xl shadow-md">
-          <h1 className="text-4xl font-bold mb-6 text-center text-cyan-400">Privacy Policy</h1>
+          <h1
+            id="privacy-heading"
+            className="text-4xl font-bold mb-6 text-center text-cyan-400"
+          >
+            Privacy Policy
+          </h1>
 
           {[
             {
@@ -57,7 +63,9 @@ const PrivacyPolicy = () => {
           ].map((section, index) => (
             <section className="mb-6" key={index}>
               <h2 className="text-2xl font-semibold mb-2 text-cyan-300">{section.title}</h2>
-              <p className="text-sm leading-relaxed text-gray-300 whitespace-pre-line">{section.content}</p>
+              <p className="text-sm leading-relaxed text-gray-200 whitespace-pre-line">
+                {section.content}
+              </p>
             </section>
           ))}
 
@@ -65,7 +73,7 @@ const PrivacyPolicy = () => {
             © {new Date().getFullYear()} Dhirendra Prajapati. All rights reserved.
           </p>
         </div>
-      </motion.div>
+      </motion.main>
     </>
   );
 };

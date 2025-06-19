@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
 
-  const handleClick = () => setClick(!click);
-
   const handleScroll = () => {
     setScrolled(window.scrollY >= 100);
+  };
+
+  const toggleMenu = () => setClick(!click);
+
+  const handleNavigate = (path) => {
+    setClick(false);
+    navigate(path);
   };
 
   useEffect(() => {
@@ -18,60 +25,64 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavigate = (path) => {
-    setClick(false);
-    navigate(path);
-  };
-
   return (
-    <div
+    <motion.nav
+      initial={{ y: -60 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-gray-900 shadow-lg" : "bg-transparent"
+        scrolled ? "bg-gray-900/80 backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center text-white">
-        <button onClick={() => navigate("/")}>
-          <h1 className="text-2xl font-bold tracking-wide">Portfolio</h1>
+        {/* Logo */}
+        <button onClick={() => navigate("/")} className="text-2xl font-bold tracking-wider text-cyan-400 hover:text-white transition">
+          D-Portfolio
         </button>
 
-        {/* Desktop Menu */}
+        {/* Desktop Nav */}
         <ul className="hidden md:flex gap-8 font-medium">
-          <li>
-            <button onClick={() => navigate("/")} className="hover:text-cyan-400 transition">Home</button>
-          </li>
-          <li>
-            <button onClick={() => navigate("/about")} className="hover:text-cyan-400 transition">About</button>
-          </li>
-          <li>
-            <button onClick={() => navigate("/project")} className="hover:text-cyan-400 transition">Projects</button>
-          </li>
-          <li>
-            <button onClick={() => navigate("/contact")} className="hover:text-cyan-400 transition">Contact</button>
-          </li>
+          {["/", "/about", "/project", "/contact"].map((path, idx) => (
+            <li key={idx}>
+              <button
+                onClick={() => navigate(path)}
+                className="hover:text-cyan-400 transition px-2 py-1"
+              >
+                {path === "/" ? "Home" : path.replace("/", "").replace("-", " ").replace(/\b\w/g, l => l.toUpperCase())}
+              </button>
+            </li>
+          ))}
         </ul>
 
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden z-20" onClick={handleClick}>
-          {click ? (
-            <FaTimes size={22} className="text-white" />
-          ) : (
-            <FaBars size={22} className="text-white" />
-          )}
+        {/* Mobile Icon */}
+        <div className="md:hidden z-50" onClick={toggleMenu}>
+          {click ? <FaTimes size={22} /> : <FaBars size={22} />}
         </div>
 
-        {/* Mobile Menu Dropdown */}
-        <ul
-          className={`absolute top-16 left-0 w-full bg-gray-800 text-white flex flex-col items-center gap-6 py-6 font-medium md:hidden transition-all duration-300 ${
-            click ? "block" : "hidden"
-          }`}
-        >
-          <li onClick={() => handleNavigate("/")}>Home</li>
-          <li onClick={() => handleNavigate("/about")}>About</li>
-          <li onClick={() => handleNavigate("/project")}>Projects</li>
-          <li onClick={() => handleNavigate("/contact")}>Contact</li>
-        </ul>
+        {/* Mobile Dropdown Menu */}
+        <AnimatePresence>
+          {click && (
+            <motion.ul
+              initial={{ y: -200 }}
+              animate={{ y: 0 }}
+              exit={{ y: -200 }}
+              transition={{ duration: 0.4 }}
+              className="absolute top-16 left-0 w-full bg-gray-800/95 backdrop-blur-sm text-white flex flex-col items-center gap-6 py-6 font-medium md:hidden"
+            >
+              {["/", "/about", "/project", "/contact"].map((path, idx) => (
+                <li
+                  key={idx}
+                  onClick={() => handleNavigate(path)}
+                  className="hover:text-cyan-400 transition cursor-pointer"
+                >
+                  {path === "/" ? "Home" : path.replace("/", "").replace("-", " ").replace(/\b\w/g, l => l.toUpperCase())}
+                </li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
       </div>
-    </div>
+    </motion.nav>
   );
 };
 

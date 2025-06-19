@@ -34,7 +34,7 @@ const Projects = () => {
       title: 'AI Chatbot Assistant',
       desc: 'AI-based emotional companion assistant using speech-to-text and GPT integration.',
       tech: ['React', 'OpenAI', 'Node.js', 'Socket.io'],
-      link: '#',
+      link: '#', // Placeholder
     },
   ];
 
@@ -45,7 +45,10 @@ const Projects = () => {
   );
 
   return (
-    <section className="bg-gray-950 text-white py-16 px-4 min-h-screen">
+    <section
+      className="bg-gray-950 text-white py-16 px-4 min-h-screen"
+      aria-labelledby="projects-heading"
+    >
       <Helmet>
         <title>Projects | Dhirendra Portfolio</title>
         <meta
@@ -56,7 +59,11 @@ const Projects = () => {
 
       <div className="max-w-7xl mx-auto">
         {/* Title */}
-        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-12" data-aos="fade-down">
+        <h2
+          id="projects-heading"
+          className="text-4xl sm:text-5xl font-bold text-center mb-12"
+          data-aos="fade-down"
+        >
           My Projects
         </h2>
 
@@ -84,11 +91,13 @@ const Projects = () => {
               >
                 <img
                   src={project.img}
-                  alt={`${project.title} preview`}
+                  alt={`Screenshot of ${project.title}`}
                   className="rounded-md mb-4 w-full object-cover h-48"
                 />
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-sm text-gray-300 mb-4 flex-grow">{project.desc}</p>
+                <p className="text-sm text-gray-200 mb-4 flex-grow">
+                  {project.desc}
+                </p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, i) => (
@@ -101,14 +110,25 @@ const Projects = () => {
                   ))}
                 </div>
 
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-auto inline-block text-center bg-cyan-500 hover:bg-cyan-600 px-4 py-2 text-sm rounded-md transition"
-                >
-                  View Project
-                </a>
+                {project.link !== '#' ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-auto inline-block text-center bg-cyan-500 hover:bg-cyan-600 px-4 py-2 text-sm rounded-md transition"
+                    aria-label={`View ${project.title}`}
+                  >
+                    View Project
+                  </a>
+                ) : (
+                  <span
+                    className="mt-auto inline-block text-center bg-gray-700 px-4 py-2 text-sm rounded-md cursor-not-allowed opacity-50"
+                    aria-disabled="true"
+                    title="Coming Soon"
+                  >
+                    Coming Soon
+                  </span>
+                )}
               </div>
             ))
           ) : (

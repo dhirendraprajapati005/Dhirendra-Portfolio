@@ -47,6 +47,7 @@ const Contact = () => {
         animate={{ opacity: 1 }} 
         transition={{ duration: 1 }}
         className="min-h-screen bg-gray-950 text-white flex items-center justify-center py-12 px-4"
+        aria-labelledby="contact-heading"
       >
         <motion.form 
           onSubmit={handleSubmit} 
@@ -56,6 +57,7 @@ const Contact = () => {
           className="w-full max-w-xl bg-gray-900 p-8 rounded-xl shadow-lg space-y-6"
         >
           <motion.h2 
+            id="contact-heading"
             className="text-3xl font-bold text-center text-cyan-400" 
             initial={{ y: -20, opacity: 0 }} 
             animate={{ y: 0, opacity: 1 }} 
@@ -68,6 +70,7 @@ const Contact = () => {
             type="text"
             name="name"
             placeholder="Your Name"
+            aria-label="Your Name"
             value={form.name}
             onChange={handleChange}
             required
@@ -79,6 +82,7 @@ const Contact = () => {
             type="email"
             name="email"
             placeholder="Your Email"
+            aria-label="Your Email"
             value={form.email}
             onChange={handleChange}
             required
@@ -90,6 +94,7 @@ const Contact = () => {
             name="message"
             rows="5"
             placeholder="Your Message"
+            aria-label="Your Message"
             value={form.message}
             onChange={handleChange}
             required
@@ -99,6 +104,7 @@ const Contact = () => {
 
           <motion.button
             type="submit"
+            aria-label="Send Message"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="w-full bg-cyan-600 hover:bg-cyan-700 py-3 rounded text-white font-semibold transition"
@@ -106,7 +112,11 @@ const Contact = () => {
             Send Message
           </motion.button>
 
-          {status && <p className="text-center text-sm text-gray-300 mt-4">{status}</p>}
+          {status && (
+            <p className="text-center text-sm text-gray-200 mt-4" role="status">
+              {status}
+            </p>
+          )}
         </motion.form>
       </motion.div>
     </>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import profileImg from '../assets/profile.png'; // Replace with your image path
+import profileImg from '../assets/profile.png';
 import Skills from '../components/Skills.jsx';
 import Projects from './Project.jsx';
 
@@ -35,15 +35,17 @@ const About = () => {
             className="rounded-2xl w-full max-w-xs aspect-square object-cover object-top shadow-lg hover:scale-105 transition duration-500 mb-4"
           />
 
-          <motion.blockquote
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="text-gray-300 italic text-sm max-w-xs"
-          >
-            “Code is like humor. When you have to explain it, it’s bad.”
-            <span className="block mt-2 text-xs text-gray-500">— Cory House</span>
-          </motion.blockquote>
+          <figure>
+            <motion.blockquote
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="italic text-sm text-white max-w-xs"
+            >
+              “Code is like humor. When you have to explain it, it’s bad.”
+            </motion.blockquote>
+            <figcaption className="block mt-2 text-xs text-white">— Cory House</figcaption>
+          </figure>
         </motion.div>
 
         {/* Right - About Text */}
@@ -74,6 +76,7 @@ const About = () => {
             className="flex justify-center"
           >
             <motion.a
+              aria-label="Download Dhirendra's Resume"
               href="https://drive.google.com/uc?export=download&id=1kvFqU7XGChW6lT19rY7Oz_ICZ1JYIt5y"
               download
               whileHover={{ scale: 1.05 }}
